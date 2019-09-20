@@ -1,12 +1,12 @@
 <template>
   <v-container>
+    <v-btn small color="primary" @click="openAddDialog()">Add Item</v-btn>
     <v-data-table
       :headers="headers"
       :items="items"
       :items-per-page="10"
       class="elevation-1"
     >
-      
       <template v-slot:item.edit="{ item }">
         <v-icon
           small
@@ -30,7 +30,7 @@
       </template>
     </v-data-table>
     <v-dialog
-      v-model="dialog"
+      v-model="editDialog"
       max-width="290"
     >
       <v-card>
@@ -60,7 +60,41 @@
         </v-card-text>
         <v-card-actions>
           <v-btn color="blue darken-1" text @click="updateItem()">Save</v-btn>
-          <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
+          <v-btn color="blue darken-1" text @click="editDialog = false">Close</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+     <v-dialog
+      v-model="addDialog"
+      max-width="290"
+    >
+      <v-card>
+        <v-card-title class="headline">Add</v-card-title>
+        <v-card-text>
+          <v-text-field
+            v-model="newItem.id"
+            label="No."
+            required
+          ></v-text-field>
+          <v-text-field
+            v-model="newItem.name"
+            label="Name"
+            required
+          ></v-text-field>
+          <v-text-field
+            v-model="newItem.phone"
+            label="Phone"
+            required
+          ></v-text-field>
+          <v-text-field
+            v-model="newItem.email"
+            label="Email"
+            required
+          ></v-text-field>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn color="blue darken-1" text @click="addItem()">Add</v-btn>
+          <v-btn color="blue darken-1" text @click="addDialog = false">Close</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -122,7 +156,8 @@ export default {
           email: 'fff@email.com',
         }
       ],
-      dialog: false,
+      addDialog: false,
+      editDialog: false,
       selectedItem: {
         index: 0,
         content: {
@@ -131,12 +166,31 @@ export default {
           phone: '02-12345678',
           email: 'aaa@email.com',
         }
-      }
+      },
+      newItem: {
+        id: null,
+        name: '',
+        phone: '',
+        email: '',
+      },
     }
   },
   methods: {
+    openAddDialog() {
+      this.addDialog = true
+    },
+    addItem () {
+      this.items.push( Object.assign({},this.newItem))
+      this.addDialog = false
+      this.newItem = {
+        id: null,
+        name: '',
+        phone: '',
+        email: '',
+      }
+    },
     openEditDialog (item) {
-      this.dialog = true
+      this.editDialog = true
       this.selectedItem.index = this.items.findIndex((i) => {
         return i.name === item.name
       })
@@ -144,7 +198,7 @@ export default {
     },
     updateItem () {
       this.items.splice(this.selectedItem.index, 1, this.selectedItem.content)
-      this.dialog = false
+      this.editDialog = false
     },
     deleteItem (name) {
       let index = this.items.findIndex((item) => {
