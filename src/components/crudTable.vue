@@ -1,8 +1,8 @@
 <template>
   <v-container>
     <h1 class="header">CRUD Table</h1>
-    <v-btn small color="primary" @click="addItem()">+ Add Item</v-btn>
-    <v-data-table :headers="headers" :items="items" :items-per-page="10" class="elevation-1">
+    <v-btn small color="info" class="green accent-3 addBtn" @click="addItem()">+ Add Item</v-btn>
+    <v-data-table :headers="headers" :items="items" :items-per-page="5" class="elevation-1">
       <template v-slot:item.edit="{ item }">
         <img src="../assets/edit.svg" width="30px" height="30px" @click="editItem(item)">
       </template>
@@ -209,6 +209,14 @@ export default {
 <style lang="scss" scoped>
 .header {
   color: rgba(64, 172, 119, 1);
+  width: 100%;
+  text-align: center;
+}
+.addBtn {
+  float: right;
+}
+.v-data-table {
+  margin-top: 50px;
 }
 </style>
 
