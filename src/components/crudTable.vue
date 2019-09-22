@@ -18,7 +18,13 @@
         <v-card-text>
           <v-form v-model="isValid">
             <v-text-field v-model="selectedItem.id" label="No." :rules="idRules"></v-text-field>
-            <v-text-field v-model="selectedItem.name" label="Name" :rules="nameRules"></v-text-field>
+            <v-text-field
+              v-model="selectedItem.name"
+              label="Name"
+              :rules="nameRules"
+              @change="checkDuplicate()"
+              :error-messages="getErrorMsg"
+            ></v-text-field>
             <v-text-field v-model="selectedItem.phone" label="Phone" :rules="phoneRules"></v-text-field>
             <v-text-field v-model="selectedItem.email" label="Email" :rules="emailRules"></v-text-field>
 
@@ -105,6 +111,7 @@ export default {
         phone: "",
         email: ""
       },
+      seletedIndex: -1,
       idRules: [v => !!v || "Serial Number is required"],
       nameRules: [v => !!v || "Name is required"],
       emailRules: [
@@ -117,7 +124,8 @@ export default {
           /.([0-9]{2})?([ .-]?)([0-9]{8})/.test(v) ||
           "Format example: 09-11222333"
       ],
-      isValid: false
+      isValid: false,
+      isDuplicate: false
     };
   },
   computed: {
@@ -126,6 +134,11 @@ export default {
         return "Add New Item";
       }
       return "Editting";
+    },
+    getErrorMsg() {
+      if (this.isDuplicate) {
+        return "The name of this item is duplicate!";
+      }
     }
   },
 
@@ -143,10 +156,8 @@ export default {
     editItem(item) {
       this.isOpen = true;
       this.isEdit = true;
-      this.items.forEach(item => {
-        this.originalItems.push(Object.assign({}, item));
-      });
-      this.selectedItem = item;
+      this.selectedIndex = this.items.indexOf(item);
+      this.selectedItem = Object.assign({}, item);
     },
     deleteItem(item) {
       this.selectedItem = item;
@@ -162,6 +173,8 @@ export default {
         this.items.push(this.selectedItem);
       } else {
         this.isEdit = false;
+        this.items.splice(this.seletedIndex, 1, this.selectedItem);
+        this.selectedIndex = -1;
       }
       this.isOpen = false;
     },
@@ -170,10 +183,23 @@ export default {
         this.isAdd = false;
       } else {
         this.isEdit = false;
-        console.log(this.originalItems);
-        this.items = [...this.originalItems];
+        this.seletedIndex = -1;
       }
       this.isOpen = false;
+    },
+    checkDuplicate() {
+      let list = this.items.filter(item => {
+        return item.name === this.selectedItem.name;
+      });
+
+      if (
+        list.length === 2 ||
+        (list.length === 1 && list[0] !== this.seletedIndex)
+      ) {
+        this.isDuplicate = true;
+        return;
+      }
+      this.isDuplicate = false;
     }
   }
 };
