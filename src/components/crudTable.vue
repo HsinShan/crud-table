@@ -1,7 +1,7 @@
 <template>
   <v-container>
+    <h1 class="header">CRUD Table</h1>
     <v-btn small color="primary" @click="addItem()">+ Add Item</v-btn>
-
     <v-data-table :headers="headers" :items="items" :items-per-page="10" class="elevation-1">
       <template v-slot:item.edit="{ item }">
         <img src="../assets/edit.svg" width="30px" height="30px" @click="editItem(item)">
@@ -16,7 +16,7 @@
       <v-card>
         <v-card-title class="headline">{{ getTitle }}</v-card-title>
         <v-card-text>
-          <v-form v-model="isValid">
+          <v-form v-model="isValid" ref="form">
             <v-text-field v-model="selectedItem.id" label="No." :rules="idRules"></v-text-field>
             <v-text-field
               v-model="selectedItem.name"
@@ -53,14 +53,13 @@ export default {
       headers: [
         {
           text: "No.",
-          align: "left",
           value: "id"
         },
         { text: "Name", value: "name", sortable: false },
         { text: "Phone", value: "phone", sortable: false },
         { text: "Email", value: "email", sortable: false },
-        { text: "edit", value: "edit", sortable: false },
-        { text: "delete", value: "delete", sortable: false }
+        { text: "Edit", value: "edit", sortable: false },
+        { text: "Delete", value: "delete", sortable: false }
       ],
       items: [
         {
@@ -152,6 +151,9 @@ export default {
         phone: "",
         email: ""
       };
+      this.$nextTick(() => {
+        this.$refs.form.resetValidation();
+      });
     },
     editItem(item) {
       this.isOpen = true;
@@ -173,7 +175,7 @@ export default {
         this.items.push(this.selectedItem);
       } else {
         this.isEdit = false;
-        this.items.splice(this.seletedIndex, 1, this.selectedItem);
+        this.items.splice(this.selectedIndex, 1, this.selectedItem);
         this.selectedIndex = -1;
       }
       this.isOpen = false;
@@ -204,3 +206,9 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+.header {
+  color: rgba(64, 172, 119, 1);
+}
+</style>
+
