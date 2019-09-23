@@ -1,7 +1,8 @@
 <template>
   <v-container>
-    <h1 class="header">CRUD Table</h1>
-    <v-btn small color="info" class="green accent-3 addBtn" @click="addItem()">+ Add Item</v-btn>
+    <h1 class="header">List of Participants</h1>
+    <p>Number of Participants: {{ this.items.length }}</p>
+    <v-btn small color="info" class="green accent-3 addBtn" @click="addItem()">+ Add Participant</v-btn>
     <v-data-table :headers="headers" :items="items" :items-per-page="5" class="elevation-1">
       <template v-slot:item.edit="{ item }">
         <img src="../assets/edit.svg" class="imgBtn" width="30px" height="30px" @click="editItem(item)">
@@ -37,7 +38,7 @@
     </v-dialog>
     <v-dialog v-model="isDelete" max-width="400">
       <v-card>
-        <v-card-title class="headline">Are you sure to delete this item?</v-card-title>
+        <v-card-title class="headline">Are you sure to delete this participant?</v-card-title>
         <v-card-actions>
           <v-btn color="blue darken-1" text @click="onDelete()">Yes</v-btn>
           <v-btn color="red darken-1" text @click="isDelete = false">No</v-btn>
@@ -131,9 +132,9 @@ export default {
   computed: {
     getTitle() {
       if (this.isAdd) {
-        return "Add New Item";
+        return "Add Participant";
       }
-      return "Editting";
+      return "Edit Participant's Information";
     },
     getErrorMsg() {
       if (this.isDuplicate) {
