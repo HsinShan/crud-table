@@ -4,13 +4,14 @@
     <v-btn small color="info" class="green accent-3 addBtn" @click="addItem()">+ Add Item</v-btn>
     <v-data-table :headers="headers" :items="items" :items-per-page="5" class="elevation-1">
       <template v-slot:item.edit="{ item }">
-        <img src="../assets/edit.svg" width="30px" height="30px" @click="editItem(item)">
+        <img src="../assets/edit.svg" class="imgBtn" width="30px" height="30px" @click="editItem(item)">
       </template>
       <template v-slot:item.delete="{ item }">
-        <img src="../assets/delete.svg" width="30px" height="30px" @click="deleteItem(item)">
+        <img src="../assets/delete.svg" class="imgBtn" width="30px" height="30px" @click="deleteItem(item)">
       </template>
       <template v-slot:no-data>No Data</template>
     </v-data-table>
+     <v-btn small color="info" class="green accent-3 addBtn" @click="goNext()">Start</v-btn>
 
     <v-dialog v-model="isOpen">
       <v-card>
@@ -138,6 +139,7 @@ export default {
       if (this.isDuplicate) {
         return "The name of this item is duplicate!";
       }
+      return "";
     }
   },
 
@@ -202,6 +204,9 @@ export default {
         return;
       }
       this.isDuplicate = false;
+    },
+    goNext () {
+      this.$router.push({name: 'Lottery'})
     }
   }
 };
@@ -217,6 +222,9 @@ export default {
 }
 .v-data-table {
   margin-top: 50px;
+  .imgBtn{
+    cursor: pointer;
+  }
 }
 </style>
 
