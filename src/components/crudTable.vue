@@ -208,6 +208,9 @@ export default {
     goNext () {
       this.$router.push({name: 'Lottery'})
     }
+  },
+  beforeDestroy () {
+    this.$bus.$emit('participantList', this.items);
   }
 };
 </script>
