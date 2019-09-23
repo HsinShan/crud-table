@@ -1,29 +1,28 @@
 <template>
   <v-container>
     <h1 class="header">Lucky Draw System</h1>
-    <h3>Easy, Convenient, and Funny!</h3>
-    <v-btn small color="info" class="green accent-3 addBtn" @click="goNext()">Enter</v-btn>
+    <h3 class="subtitle">Easy, Convenient, and Funny!</h3>
+    <v-layout>
+      <v-btn color="info" class="teal accent-3 btn" @click="goNext()">Enter</v-btn>
+    </v-layout>
   </v-container>
 </template>
 
 <script>
 export default {
   data() {
-    return {
-    };
+    return {};
   },
   methods: {
-    goNext () {
-      this.$router.push({name: 'CrudTable'})
+    goNext() {
+      this.$router.push({ name: "CrudTable" });
     }
   }
 };
 </script>
 <style lang="scss" scoped>
 .header {
-  color: rgba(64, 172, 119, 1);
-  width: 100%;
-  text-align: center;
+  margin: 100px auto 20px;
 }
 </style>
 

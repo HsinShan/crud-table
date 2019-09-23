@@ -1,19 +1,32 @@
 <template>
   <v-container>
     <h1 class="header">List of Participants</h1>
-    <p>Number of Participants: {{ this.items.length }}</p>
-    <v-btn small color="info" class="green accent-3 addBtn" @click="addItem()">+ Add Participant</v-btn>
+    <p class="subtitle">Number of Participants: {{ this.items.length }}</p>
+    <v-btn small class="teal accent-1 addBtn" @click="addItem()">+ Add</v-btn>
     <v-data-table :headers="headers" :items="items" :items-per-page="5" class="elevation-1">
       <template v-slot:item.edit="{ item }">
-        <img src="../assets/edit.svg" class="imgBtn" width="30px" height="30px" @click="editItem(item)">
+        <img
+          src="../assets/edit.svg"
+          class="imgBtn"
+          width="30px"
+          height="30px"
+          @click="editItem(item)"
+        />
       </template>
       <template v-slot:item.delete="{ item }">
-        <img src="../assets/delete.svg" class="imgBtn" width="30px" height="30px" @click="deleteItem(item)">
+        <img
+          src="../assets/delete.svg"
+          class="imgBtn"
+          width="30px"
+          height="30px"
+          @click="deleteItem(item)"
+        />
       </template>
       <template v-slot:no-data>No Data</template>
     </v-data-table>
-     <v-btn small color="info" class="green accent-3 addBtn" @click="goNext()">Start</v-btn>
-
+    <v-layout>
+      <v-btn color="info" v-if="items.length !== 0" class="teal accent-3 btn" @click="goNext()">Next</v-btn>
+    </v-layout>
     <v-dialog v-model="isOpen">
       <v-card>
         <v-card-title class="headline">{{ getTitle }}</v-card-title>
@@ -38,10 +51,11 @@
     </v-dialog>
     <v-dialog v-model="isDelete" max-width="400">
       <v-card>
-        <v-card-title class="headline">Are you sure to delete this participant?</v-card-title>
+        <v-card-title class="headline">Warning</v-card-title>
+        <v-card-text>Are you sure to delete this participant?</v-card-text>
         <v-card-actions>
-          <v-btn color="blue darken-1" text @click="onDelete()">Yes</v-btn>
-          <v-btn color="red darken-1" text @click="isDelete = false">No</v-btn>
+          <v-btn color="red darken-1" text @click="onDelete()">Yes</v-btn>
+          <v-btn color="gray darken-1" text @click="isDelete = false">No</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -66,37 +80,37 @@ export default {
       items: [
         {
           id: 1,
-          name: "User1",
+          name: "Alice",
           phone: "02-12345678",
           email: "aaa@email.com"
         },
         {
           id: 2,
-          name: "User2",
+          name: "Bob",
           phone: "02-12345678",
           email: "bbb@email.com"
         },
         {
           id: 3,
-          name: "User3",
+          name: "Candy",
           phone: "02-12345678",
           email: "ccc@email.com"
         },
         {
           id: 4,
-          name: "User4",
+          name: "Dobby",
           phone: "02-12345678",
           email: "ddd@email.com"
         },
         {
           id: 5,
-          name: "User5",
+          name: "Emily",
           phone: "02-12345678",
           email: "eee@email.com"
         },
         {
           id: 6,
-          name: "User6",
+          name: "Fiona",
           phone: "02-12345678",
           email: "fff@email.com"
         }
@@ -206,27 +220,22 @@ export default {
       }
       this.isDuplicate = false;
     },
-    goNext () {
-      this.$router.push({name: 'Lottery'})
+    goNext() {
+      this.$router.push({ name: "Lottery" });
     }
   },
-  beforeDestroy () {
-    this.$bus.$emit('participantList', this.items);
+  beforeDestroy() {
+    this.$bus.$emit("participantList", this.items);
   }
 };
 </script>
 <style lang="scss" scoped>
-.header {
-  color: rgba(64, 172, 119, 1);
-  width: 100%;
-  text-align: center;
-}
 .addBtn {
   float: right;
 }
 .v-data-table {
-  margin-top: 50px;
-  .imgBtn{
+  margin: 60px auto 5px;
+  .imgBtn {
     cursor: pointer;
   }
 }
