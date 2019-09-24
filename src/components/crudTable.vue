@@ -2,7 +2,7 @@
   <v-container>
     <h1 class="header">List of Participants</h1>
     <p class="subtitle">Number of Participants: {{ this.items.length }}</p>
-    <v-btn small class="teal accent-1 addBtn" @click="addItem()">+ Add</v-btn>
+    <v-btn color="info" small class="teal accent-1 addBtn" @click="addItem()">+ Add</v-btn>
     <v-data-table :headers="headers" :items="items" :items-per-page="5" class="elevation-1">
       <template v-slot:item.edit="{ item }">
         <img

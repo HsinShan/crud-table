@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <h2 class="header">Click Start</h2>
     <v-layout>
       <SlotMachine
         :list="options"
@@ -21,10 +22,11 @@
         <v-card-title class="headline">Winner is {{winner}}</v-card-title>
         <v-card-text>
           <h4>Winner's Information</h4>
-          <p>No. :{{winnerInfo.id}}</p>
-          <p>Name :{{winnerInfo.name}}</p>
-          <p>Phone. :{{winnerInfo.phone}}</p>
-          <p>Email :{{winnerInfo.email}}</p>
+          <br />
+          <p>No.: {{winnerInfo.id}}</p>
+          <p>Name: {{winnerInfo.name}}</p>
+          <p>Phone: {{winnerInfo.phone}}</p>
+          <p>Email: {{winnerInfo.email}}</p>
         </v-card-text>
         <v-card-actions>
           <v-btn color="blue darken-1" text @click="goBack()">Restart</v-btn>
@@ -89,15 +91,17 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.header {
+  margin-bottom: 30px;
+}
 .slotGame {
   margin: auto;
 }
-.animLine{
+.animLine {
   background-size: cover;
   position: relative;
-  transition: .1s;
+  transition: 0.1s;
   box-shadow: 0 2px 4px rgb(247, 228, 61), 0 8px 32px rgba(247, 228, 61, 0.5);
 }
-
 </style>
 

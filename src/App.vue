@@ -14,18 +14,20 @@ export default {
 </script>
 
 <style lang="scss">
+$mainColor: rgba(64, 172, 119, 1);
+$subColor: rgb(126, 202, 165);
 .btn {
   width: 200px;
   font-size: 20px;
   margin: 30px auto;
 }
 .header {
-  color: rgba(64, 172, 119, 1);
+  color: $mainColor;
   width: 100%;
   text-align: center;
 }
 .subtitle {
-  color: rgb(126, 202, 165);
+  color: $subColor;
   width: 100%;
   text-align: center;
 }
