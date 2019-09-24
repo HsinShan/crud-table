@@ -1,15 +1,16 @@
 <template>
   <v-container>
     <v-layout>
-      <slot-machine
+      <SlotMachine
         :list="options"
         :trigger="trigger"
-        :height="250"
-        :width="500"
+        :height="220"
+        :width="350"
         @onComplete="onComplete"
         :reponsive="true"
         class="slotGame"
-      ></slot-machine>
+        :class="{'animLine': isEnd}"
+      ></SlotMachine>
     </v-layout>
     <v-layout>
       <v-btn color="info" v-if="!isEnd" class="teal accent-3 btn" @click="startSpin()">start</v-btn>
@@ -34,10 +35,10 @@
 </template>
 
 <script>
-import { SlotMachine } from "@puckwang/vue-slot-machine";
+import SlotMachine from "./_slotMachine";
 
 export default {
-  components: { "slot-machine": SlotMachine },
+  components: { SlotMachine },
   data() {
     return {
       participants: [],
@@ -66,7 +67,7 @@ export default {
   },
   methods: {
     startSpin() {
-      this.trigger = "Go";
+      this.trigger = new Date();
     },
     onComplete(name) {
       this.winner = name.text;
@@ -83,7 +84,7 @@ export default {
     }
   },
   beforeDestroy() {
-    this.$bus.on("participantList", this.participants);
+    this.$bus.off("participantList", this.participants);
   }
 };
 </script>
@@ -91,5 +92,12 @@ export default {
 .slotGame {
   margin: auto;
 }
+.animLine{
+  background-size: cover;
+  position: relative;
+  transition: .1s;
+  box-shadow: 0 2px 4px rgb(247, 228, 61), 0 8px 32px rgba(247, 228, 61, 0.5);
+}
+
 </style>
 
