@@ -1,6 +1,6 @@
 # crud-table
 
-此專案是以 CRUD table 發想的小型抽獎平台 - 「**Lucky Draw System**」
+此專案是以 CRUD table 發想的小型抽獎平台 - 「**Lucky Draw System**」  
 提供簡單、快速又有趣的抽獎工具
 
 ## 如何使用
@@ -19,9 +19,9 @@ npm run serve
 
 ### How to Use?
 
-一開始進入畫面為專案首頁，點擊 Enter 即可進入參加名單(List of Participants) 頁面。
-→ 在進入參加名單(List of Participants) 頁面後，即可查看已參加的抽獎者名單，也可以依需求新增、修改或刪除參加者。
-→ 確認完參加名單後，點擊 Next 即可進入抽獎畫面。
+一開始進入畫面為專案首頁，點擊 Enter 即可進入參加名單(List of Participants) 頁面。  
+→ 在進入參加名單(List of Participants) 頁面後，即可查看已參加的抽獎者名單，也可以依需求新增、修改或刪除參加者。  
+→ 確認完參加名單後，點擊 Next 即可進入抽獎畫面。  
 → 按下 Start 即開始抽獎，抽完點擊 OK 即可查看得獎者的資訊。若要重新抽獎按下 Restart 即可回到參加名單(List of Participants) 頁面，重新開始抽獎。
 
 ## Design Principle
