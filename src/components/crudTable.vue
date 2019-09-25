@@ -2,7 +2,7 @@
   <v-container>
     <h1 class="header">List of Participants</h1>
     <p class="subtitle">Number of Participants: {{ this.items.length }}</p>
-    <v-btn color="info" small class="teal accent-1 addBtn" @click="addItem()">+ Add</v-btn>
+    <v-btn color="info" small class="teal accent-4 addBtn" @click="addItem()">+ Add</v-btn>
     <v-data-table :headers="headers" :items="items" :items-per-page="5" class="elevation-1">
       <template v-slot:item.edit="{ item }">
         <img
@@ -27,7 +27,7 @@
     <v-layout>
       <v-btn color="info" v-if="items.length !== 0" class="teal accent-3 btn" @click="goNext()">Next</v-btn>
     </v-layout>
-    <v-dialog v-model="isOpen">
+    <v-dialog v-model="isOpen" max-width="400">
       <v-card>
         <v-card-title class="headline">{{ getTitle }}</v-card-title>
         <v-card-text>

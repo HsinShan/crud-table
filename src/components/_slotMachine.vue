@@ -1,7 +1,6 @@
 <template>
   <div class="slotMachineDiv" ref="slotMachineDiv">
     <div ref="slotMachine"></div>
-    <div class="endBlock"></div>
   </div>
 </template>
 
@@ -249,51 +248,6 @@ export default {
 <style scoped lang="scss">
 .slotMachineDiv {
   position: relative;
-}
-.endBlock {
-  position: absolute;
-  z-index: 5;
-  border-radius: 10px;
-  display: block;
-  width: 100%;
-  height: 100%;
-  left: 4px;
-  top: 4px;
-  bottom: 4px;
-  right: 4px;
-  border: 2px dotted rgb(209, 17, 17);
-  clip: rect(0, 0, 0, 0);
-  animation: maskBorder 1.4s infinite;
-}
-
-@keyframes maskBorder {
-  0% {
-    clip: rect(0, 50px, 10px, 0);
-  }
-  20% {
-    clip: rect(0, 200px, 10px, 0);
-  }
-  35% {
-    clip: rect(0, 200px, 10px, 190px);
-  }
-  50% {
-    clip: rect(10px, 200px, 50px, 190px);
-  }
-  60% {
-    clip: rect(40px, 200px, 50px, 190px);
-  }
-  70% {
-    clip: rect(40px, 200px, 50px, 0px);
-  }
-  85% {
-    clip: rect(40px, 10px, 50px, 0px);
-  }
-  90% {
-    clip: rect(0, 10px, 50px, 0px);
-  }
-  100% {
-    clip: rect(0, 10px, 10px, 0px);
-  }
 }
 </style>
 

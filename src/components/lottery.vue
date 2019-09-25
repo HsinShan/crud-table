@@ -10,12 +10,12 @@
         @onComplete="onComplete"
         :reponsive="true"
         class="slotGame"
-        :class="{'animLine': isEnd}"
+        :class="{'shadow': isEnd}"
       ></SlotMachine>
     </v-layout>
     <v-layout>
       <v-btn color="info" v-if="!isEnd" class="teal accent-3 btn" @click="startSpin()">start</v-btn>
-      <v-btn v-else class="yellow lighten-1 btn" @click="finish()">OK</v-btn>
+      <v-btn v-else class="amber lighten-2 btn" @click="finish()">OK</v-btn>
     </v-layout>
     <v-dialog v-model="isOpen" max-width="400">
       <v-card v-if="winnerInfo">
@@ -97,11 +97,21 @@ export default {
 .slotGame {
   margin: auto;
 }
-.animLine {
+.shadow {
   background-size: cover;
   position: relative;
-  transition: 0.1s;
-  box-shadow: 0 2px 4px rgb(247, 228, 61), 0 8px 32px rgba(247, 228, 61, 0.5);
+  animation: spread 1.4s infinite;
+}
+ @keyframes spread {
+  0%{
+    box-shadow: 0 0 4px 2px rgb(247, 228, 61), 0 0 32px 4px rgba(247, 228, 61, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 8px 4px rgb(247, 120, 61), 0 0 32px 6px rgba(224, 117, 29, 0.692);
+  }
+  100% {
+    box-shadow: 0 0 16px 6px rgb(245, 91, 64), 0 0 32px 8px rgba(146, 38, 19, 0.87);
+  }
 }
 </style>
 
