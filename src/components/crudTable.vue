@@ -43,8 +43,8 @@
             <v-text-field v-model="selectedItem.phone" label="Phone" :rules="phoneRules"></v-text-field>
             <v-text-field v-model="selectedItem.email" label="Email" :rules="emailRules"></v-text-field>
 
-            <v-btn color="blue darken-1" text :disabled="!isValid" @click="onSave()">Save</v-btn>
-            <v-btn color="blue darken-1" text @click="onCancel()">Close</v-btn>
+            <v-btn color="teal accent-4" text :disabled="!isValid" @click="onSave()">Save</v-btn>
+            <v-btn color="grey darken-2" text @click="onCancel()">Close</v-btn>
           </v-form>
         </v-card-text>
       </v-card>
@@ -55,7 +55,7 @@
         <v-card-text>Are you sure to delete this participant?</v-card-text>
         <v-card-actions>
           <v-btn color="red darken-1" text @click="onDelete()">Yes</v-btn>
-          <v-btn color="gray darken-1" text @click="isDelete = false">No</v-btn>
+          <v-btn color="grey darken-2" text @click="isDelete = false">No</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

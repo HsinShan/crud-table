@@ -22,7 +22,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .header {
-  margin: 100px auto 20px;
+  margin: 20px auto 20px;
 }
 </style>
 
