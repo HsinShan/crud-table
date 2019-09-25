@@ -15,7 +15,7 @@
     </v-layout>
     <v-layout>
       <v-btn color="info" v-if="!isEnd" class="teal accent-3 btn" @click="startSpin()">start</v-btn>
-      <v-btn v-else class="yellow lighten-2 btn" @click="finish()">OK</v-btn>
+      <v-btn v-else class="teal accent-4 btn" @click="finish()">OK</v-btn>
     </v-layout>
     <v-dialog v-model="isOpen" max-width="350">
       <v-card v-if="winnerInfo">

@@ -1,8 +1,8 @@
 # crud-table
 
 此專案是以 CRUD table 發想的小型抽獎平台 - 「**Lucky Draw System**」  
-提供簡單、快速又有趣的抽獎工具
-
+提供簡單、快速又有趣的抽獎工具  
+DEMO site: [Lucky Draw System](https://crud-table-cb119.firebaseapp.com)
 ## 如何使用
 
 ### Project setup
