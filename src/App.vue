@@ -2,24 +2,34 @@
   <v-app>
     <v-content>
       <v-layout>
-        <img src="./assets/logo.svg" alt="Lucky Draw System" class="logo"/>
+        <img src="./assets/images/logo.svg" alt="Lucky Draw System" class="logo"/>
       </v-layout>
       <router-view />
     </v-content>
+    <AppFooter/>
   </v-app>
 </template>
 
 <script>
+import AppFooter from "./components/footer"
+
 export default {
   name: "App",
+  components: { AppFooter },
   data: () => ({})
 };
 </script>
 
 <style lang="scss">
-$mainColor: rgba(64, 172, 119, 1);
-$subColor: rgb(126, 202, 165);
+@import "./assets/styles/variables.scss";
 
+* {
+  color: rgba(78, 75, 75, 0.933);
+}
+
+.v-content {
+  margin-bottom: 40px;
+}
 .logo {
   width: 100px;
   height: 100px;

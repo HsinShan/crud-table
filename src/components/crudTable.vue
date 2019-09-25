@@ -6,7 +6,7 @@
     <v-data-table :headers="headers" :items="items" :items-per-page="5" class="elevation-1">
       <template v-slot:item.edit="{ item }">
         <img
-          src="../assets/edit.svg"
+          src="../assets/images/edit.svg"
           class="imgBtn"
           width="30px"
           height="30px"
@@ -15,7 +15,7 @@
       </template>
       <template v-slot:item.delete="{ item }">
         <img
-          src="../assets/delete.svg"
+          src="../assets/images/delete.svg"
           class="imgBtn"
           width="30px"
           height="30px"
