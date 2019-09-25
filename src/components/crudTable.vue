@@ -25,7 +25,8 @@
       <template v-slot:no-data>No Data</template>
     </v-data-table>
     <v-layout>
-      <v-btn color="info" v-if="items.length !== 0" class="teal accent-3 btn" @click="goNext()">Next</v-btn>
+      <v-btn color="info" v-if="items.length > 1" class="teal accent-3 btn" @click="goNext()">Next</v-btn>
+      <p class="warningMsg" v-else>Please add more participants !!!</p>
     </v-layout>
     <v-dialog v-model="isOpen" max-width="400">
       <v-card>
@@ -238,6 +239,12 @@ export default {
   .imgBtn {
     cursor: pointer;
   }
+}
+.warningMsg {
+  width: 100%;
+  text-align: center;
+  color: red;
+  padding: 20px 0px;
 }
 </style>
 
